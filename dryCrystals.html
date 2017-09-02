@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+    <title>Crystals</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <style>
+        .target  {
+            height: 100px;
+            width: 200px;
+            background-color: #2db34a;
+            border: white;
+            font-size: 40px;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        .myScore {
+            height: 100px;
+            width: 200px;
+            background-color: #2db34a;
+            border: white;
+            font-size: 30px;
+        }
+        .gem {
+            width: 45px;
+        }
+        .scores {
+            background-color: #6ea3da;
+            font-size: 23px;
+            color: white;
+            width: 200px;
+            padding: 14px;
+        }
+    </style>
+
+
+</head>
+
+<html>
+    <body>
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="target">
+                </div><br><br>
+                <div id="zero" class="btn btn-button btn-primary gem" value="0">^</div>
+                <div id="one" class="btn btn-primary gem" value="1">*</div>
+                <div id="two" class="btn btn-primary gem" value="2">&</div>
+                <div id="three" class="btn btn-button btn-primary gem" value="3">#</div>
+                <br><br>
+                <div class="myScore text-center"></div><br>
+                <div class="scores">Wins<span id="wins">  0</span><br>Losses<span id="losses">  0</span></div>
+            </div>
+
+        </div>
+
+        <script type="text/javascript">
+
+
+
+
+
+
+                
+
+                 function start(){
+
+                                              
+                      var buttons = [];
+                      var score = 0;
+                      var targetNum = 0;
+
+
+
+                     targetNum = (Math.floor(Math.random() * 101) + 19);
+                     $('.target').html(targetNum);
+
+                     for (var i = 0; i < 4; i++) {
+                         buttons.push(Math.floor(Math.random() * 12) + 1);
+
+                     }
+                           console.log(buttons);
+
+                     $('.gem').on("click", function () {
+                         score += buttons[(parseInt($(this).attr('value')))];
+                         $('.myScore').html(score);
+                         //console.log('score is' + score);
+
+                     if (score === targetNum) {
+                         var wins= 0;
+                         wins += 1;
+                         $('#wins').html(wins);
+                         //console.log("wins are" + wins);
+                         start();
+                     }
+
+                     if (score > targetNum) {
+                         var losses = 0;
+                         losses += 1;
+                         $('#losses').html(losses);
+                         //console.log("losses are" + losses);
+                         start();
+                     }
+
+                     });
+                 }
+   start();
+   
+        </script>
+    </body>
+</html>
